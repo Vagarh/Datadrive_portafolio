@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
-        <a href="#inicio" className="text-2xl font-bold tracking-tighter text-primary">
+        <a href="#home" className="text-2xl font-bold tracking-tighter text-primary">
           JFCA
         </a>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -35,7 +35,7 @@ const Header = () => {
           <Button asChild>
             <a href="/cv.pdf" download>
               <Download className="mr-2 h-4 w-4" />
-              CV
+              Resume
             </a>
           </Button>
         </div>
@@ -44,18 +44,18 @@ const Header = () => {
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
-                <span className="sr-only">Abrir menú</span>
+                <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center p-4 border-b">
-                   <a href="#inicio" className="text-2xl font-bold tracking-tighter text-primary" onClick={() => setIsOpen(false)}>
+                   <a href="#home" className="text-2xl font-bold tracking-tighter text-primary" onClick={() => setIsOpen(false)}>
                     JFCA
                   </a>
                   <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
                     <X className="h-6 w-6" />
-                    <span className="sr-only">Cerrar menú</span>
+                    <span className="sr-only">Close menu</span>
                   </Button>
                 </div>
                 <nav className="flex flex-col items-start space-y-4 p-4 text-lg">
@@ -74,7 +74,7 @@ const Header = () => {
                   <Button asChild className="w-full">
                     <a href="/cv.pdf" download>
                       <Download className="mr-2 h-4 w-4" />
-                      Descargar CV
+                      Download Resume
                     </a>
                   </Button>
                 </div>

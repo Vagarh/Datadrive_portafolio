@@ -19,13 +19,13 @@ import { Loader2, Send } from 'lucide-react';
 import type { Project } from '@/lib/portfolio-data';
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
-  email: z.string().email({ message: "Por favor, introduce un email válido." }),
-  message: z.string().min(10, { message: "El mensaje debe tener al menos 10 caracteres." }),
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email." }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
 const projectDescriptions = projects.map(
-  (p) => `Título: ${p.title}. Descripción: ${p.description}. Tecnologías: ${p.technologies.join(', ')}.`
+  (p) => `Title: ${p.title}. Description: ${p.description}. Technologies: ${p.technologies.join(', ')}.`
 );
 
 export default function ContactSection() {
@@ -57,8 +57,8 @@ export default function ContactSection() {
       } catch (error) {
         console.error("Error fetching recommendations:", error);
         toast({
-            title: "Error de IA",
-            description: "No se pudieron obtener las recomendaciones. Por favor, intenta de nuevo.",
+            title: "AI Error",
+            description: "Could not get recommendations. Please try again.",
             variant: "destructive",
         });
       } finally {
@@ -75,8 +75,8 @@ export default function ContactSection() {
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
     toast({
-      title: "¡Mensaje enviado!",
-      description: "Gracias por contactarme. Te responderé pronto.",
+      title: "Message sent!",
+      description: "Thank you for contacting me. I will get back to you soon.",
     });
     form.reset();
     setRecommended([]);
@@ -88,41 +88,41 @@ export default function ContactSection() {
   }, [recommended]);
 
   return (
-    <section id="contacto" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+    <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-background">
       <div className="container px-4 md:px-6">
         <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">¿Tienes un reto de datos o IA?</h2>
-            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">Hablemos. Rellena el formulario o contáctame a <a href="mailto:juan.felipe@email.com" className="text-accent hover:underline">juan.felipe@email.com</a></p>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Have a data or AI challenge?</h2>
+            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">Let's talk. Fill out the form or contact me at <a href="mailto:juan.felipe@email.com" className="text-accent hover:underline">juan.felipe@email.com</a></p>
         </div>
         <div className="grid lg:grid-cols-2 gap-12 mt-12">
             <div>
                 <Card className="bg-secondary">
                     <CardHeader>
-                        <CardTitle>Formulario de Contacto</CardTitle>
+                        <CardTitle>Contact Form</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                                 <FormField control={form.control} name="name" render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Nombre</FormLabel>
-                                        <FormControl><Input placeholder="Tu nombre" {...field} /></FormControl>
+                                        <FormLabel>Name</FormLabel>
+                                        <FormControl><Input placeholder="Your name" {...field} /></FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )} />
                                 <FormField control={form.control} name="email" render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Email</FormLabel>
-                                        <FormControl><Input type="email" placeholder="tu@email.com" {...field} /></FormControl>
+                                        <FormControl><Input type="email" placeholder="you@email.com" {...field} /></FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )} />
                                 <FormField control={form.control} name="message" render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Mensaje</FormLabel>
+                                        <FormLabel>Message</FormLabel>
                                         <FormControl>
                                             <Textarea
-                                                placeholder="Cuéntame sobre tu proyecto o idea..."
+                                                placeholder="Tell me about your project or idea..."
                                                 {...field}
                                                 rows={6}
                                             />
@@ -131,7 +131,7 @@ export default function ContactSection() {
                                     </FormItem>
                                 )} />
                                 <Button type="submit" disabled={form.formState.isSubmitting} className="w-full md:w-auto">
-                                    <Send className="mr-2 h-4 w-4" /> Enviar Mensaje
+                                    <Send className="mr-2 h-4 w-4" /> Send Message
                                 </Button>
                             </form>
                         </Form>
@@ -142,7 +142,7 @@ export default function ContactSection() {
                 <Card className="bg-secondary flex-grow flex flex-col">
                     <CardHeader>
                         <CardTitle className="flex items-center">
-                            Proyectos Recomendados para ti
+                            Recommended Projects for You
                             {isLoading && <Loader2 className="ml-2 h-5 w-5 animate-spin text-primary" />}
                         </CardTitle>
                     </CardHeader>
@@ -162,8 +162,8 @@ export default function ContactSection() {
                             <div className="flex-grow flex items-center justify-center text-center text-muted-foreground py-8">
                                 <p>
                                     {isLoading 
-                                        ? "Analizando tu consulta..." 
-                                        : "Escribe en el mensaje y la IA te sugerirá proyectos relevantes de mi portafolio."}
+                                        ? "Analyzing your query..." 
+                                        : "Type in the message and the AI will suggest relevant projects from my portfolio."}
                                 </p>
                             </div>
                         )}

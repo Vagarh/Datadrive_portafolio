@@ -18,32 +18,32 @@ export type Service = {
 
 export const projects: Project[] = [
   {
-    title: 'Detección de plagas con termografía',
-    description: 'Análisis de imágenes térmicas para la detección temprana de plagas en cultivos, mejorando la eficiencia agrícola.',
+    title: 'Pest Detection with Thermography',
+    description: 'Analysis of thermal images for early detection of pests in crops, improving agricultural efficiency.',
     technologies: ['Python', 'TensorFlow', 'OpenCV', 'GCP'],
     link: '#',
     image: 'https://placehold.co/600x400.png',
     imageHint: 'agriculture technology'
   },
   {
-    title: 'Agente de IA para soporte legal',
-    description: 'Desarrollo de un agente conversacional para automatizar la clasificación de documentos y la respuesta a consultas legales.',
+    title: 'AI Agent for Legal Support',
+    description: 'Development of a conversational agent to automate document classification and response to legal inquiries.',
     technologies: ['Python', 'LangChain', 'OpenAI API', 'ETL'],
     link: '#',
     image: 'https://placehold.co/600x400.png',
     imageHint: 'AI law'
   },
   {
-    title: 'Pipeline ETL en Google Drive',
-    description: 'Automatización de la extracción, transformación y carga de datos desde múltiples fuentes en Google Drive a un data warehouse.',
+    title: 'ETL Pipeline in Google Drive',
+    description: 'Automation of data extraction, transformation, and loading from multiple sources in Google Drive to a data warehouse.',
     technologies: ['Airflow', 'Python', 'Google Cloud', 'BigQuery'],
     link: '#',
     image: 'https://placehold.co/600x400.png',
     imageHint: 'data pipeline'
   },
   {
-    title: 'Dashboard de Business Intelligence',
-    description: 'Creación de dashboards interactivos para la visualización de KPIs de negocio, permitiendo la toma de decisiones estratégicas.',
+    title: 'Business Intelligence Dashboard',
+    description: 'Creation of interactive dashboards for visualizing business KPIs, enabling strategic decision-making.',
     technologies: ['Power BI', 'SQL', 'Data Studio'],
     link: '#',
     image: 'https://placehold.co/600x400.png',
@@ -53,41 +53,41 @@ export const projects: Project[] = [
 
 export const services: Service[] = [
   {
-    title: 'Consultoría en Visión por Computadora',
-    description: 'Análisis y desarrollo de soluciones personalizadas para el procesamiento y análisis de imágenes y video.',
+    title: 'Computer Vision Consulting',
+    description: 'Analysis and development of custom solutions for image and video processing and analysis.',
     icon: Computer,
   },
   {
-    title: 'Desarrollo de Dashboards BI',
-    description: 'Diseño e implementación de paneles de control interactivos para monitorizar y analizar datos de negocio.',
+    title: 'BI Dashboard Development',
+    description: 'Design and implementation of interactive control panels to monitor and analyze business data.',
     icon: BarChart3,
   },
   {
-    title: 'Despliegue de Modelos en la Nube',
-    description: 'Implementación de modelos de machine learning en plataformas cloud como GCP, AWS o Azure para escalabilidad.',
+    title: 'Cloud Model Deployment',
+    description: 'Implementation of machine learning models on cloud platforms like GCP, AWS, or Azure for scalability.',
     icon: Cloud,
   },
   {
-    title: 'Automatización de ETL',
-    description: 'Creación de pipelines de datos robustos y automatizados para garantizar la calidad y disponibilidad de la información.',
+    title: 'ETL Automation',
+    description: 'Creation of robust and automated data pipelines to ensure the quality and availability of information.',
     icon: Workflow,
   },
   {
-    title: 'Desarrollo de Agentes de IA',
-    description: 'Construcción de agentes inteligentes y chatbots para automatizar tareas y mejorar la interacción con el cliente.',
+    title: 'AI Agent Development',
+    description: 'Building intelligent agents and chatbots to automate tasks and improve customer interaction.',
     icon: Bot,
   },
   {
-    title: 'Entrenamiento de Equipos',
-    description: 'Capacitación a equipos en herramientas y metodologías de ciencia de datos, BI y desarrollo de IA.',
+    title: 'Team Training',
+    description: 'Training teams in data science tools and methodologies, BI, and AI development.',
     icon: Users,
   },
 ];
 
 export const navLinks = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#sobre-mi', label: 'Sobre mí' },
-  { href: '#proyectos', label: 'Proyectos' },
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#services', label: 'Services' },
+  { href: '#contact', label: 'Contact' },
 ];

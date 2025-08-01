@@ -3,12 +3,12 @@ import { services } from '@/lib/portfolio-data';
 
 const ServicesSection = () => {
   return (
-    <section id="servicios" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
+    <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Servicios</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Services</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Ofrezco mi experiencia para ayudarte a construir soluciones de datos robustas e innovadoras.
+            I offer my expertise to help you build robust and innovative data solutions.
           </p>
         </div>
         <div className="grid gap-6 mt-12 sm:grid-cols-2 lg:grid-cols-3">

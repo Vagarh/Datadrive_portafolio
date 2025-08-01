@@ -5,13 +5,13 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: 'DataDive Portfolio | Juan Felipe Cardona Arango',
-  description: 'Científico de Datos & Ingeniero Biomédico. Transformando datos en decisiones estratégicas con Python, Cloud y visión por computadora.',
-  keywords: ['Data Science', 'AI', 'Biomedical Engineering', 'Juan Felipe Cardona Arango', 'Portfolio', 'Python', 'Cloud Computing'],
+  description: 'Data Scientist | Machine Learning & Deep Learning | DL Research | NLP | Computer Vision | Biomedical Engineer | MSc in Data Science',
+  keywords: ['Data Science', 'AI', 'Biomedical Engineering', 'Juan Felipe Cardona Arango', 'Portfolio', 'Python', 'Cloud Computing', 'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision'],
   authors: [{ name: 'Juan Felipe Cardona Arango' }],
   creator: 'Juan Felipe Cardona Arango',
   openGraph: {
       title: 'DataDive Portfolio | Juan Felipe Cardona Arango',
-      description: 'Transformando datos en decisiones estratégicas.',
+      description: 'Transforming data into strategic decisions.',
       type: 'website',
   }
 };
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="dark">
+    <html lang="en" className="dark">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

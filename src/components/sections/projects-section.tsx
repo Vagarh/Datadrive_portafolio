@@ -7,12 +7,12 @@ import { ArrowRight } from 'lucide-react';
 
 const ProjectsSection = () => {
   return (
-    <section id="proyectos" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+    <section id="projects" className="w-full py-12 md:py-24 lg:py-32 bg-background">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Proyectos Destacados</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Featured Projects</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Casos de éxito donde he aplicado mis habilidades para resolver problemas complejos y generar valor.
+            Success cases where I have applied my skills to solve complex problems and generate value.
           </p>
         </div>
         <div className="grid gap-8 mt-12 md:grid-cols-2">
@@ -39,7 +39,7 @@ const ProjectsSection = () => {
                 <div className="mt-4">
                     <Button asChild variant="link" className="p-0 text-accent hover:text-accent/80 group">
                         <a href={project.link}>
-                            Ver proyecto
+                            View project
                             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </a>
                     </Button>
