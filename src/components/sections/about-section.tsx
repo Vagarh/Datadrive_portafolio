@@ -1,9 +1,15 @@
+
+"use client";
+
 import Image from 'next/image';
+import { useScrollIntoView } from '@/hooks/use-scroll-into-view';
+import { cn } from '@/lib/utils';
 
 const AboutSection = () => {
+  const { ref, inView } = useScrollIntoView();
   return (
-    <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-secondary">
-      <div className="container px-4 md:px-6">
+    <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-secondary" ref={ref}>
+      <div className={cn("container px-4 md:px-6 transition-all duration-700 ease-in-out", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
           <div className="order-2 lg:order-1 space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary">About Me</h2>

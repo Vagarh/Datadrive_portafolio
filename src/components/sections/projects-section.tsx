@@ -1,14 +1,20 @@
+
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from 'next/image';
 import { projects } from '@/lib/portfolio-data';
 import { ArrowRight } from 'lucide-react';
+import { useScrollIntoView } from '@/hooks/use-scroll-into-view';
+import { cn } from '@/lib/utils';
 
 const ProjectsSection = () => {
+  const { ref, inView } = useScrollIntoView();
   return (
-    <section id="projects" className="w-full py-12 md:py-24 lg:py-32 bg-background">
-      <div className="container px-4 md:px-6">
+    <section id="projects" className="w-full py-12 md:py-24 lg:py-32 bg-background" ref={ref}>
+      <div className={cn("container px-4 md:px-6 transition-all duration-700 ease-in-out", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Featured Projects</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -16,8 +22,8 @@ const ProjectsSection = () => {
           </p>
         </div>
         <div className="grid gap-8 mt-12 md:grid-cols-2">
-          {projects.map((project) => (
-            <Card key={project.title} className="flex flex-col overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 bg-secondary">
+          {projects.map((project, index) => (
+            <Card key={project.title} style={{ transitionDelay: `${index * 150}ms` }} className={cn("flex flex-col overflow-hidden transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 bg-secondary", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
               <Image
                 src={project.image}
                 alt={project.title}
