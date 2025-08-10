@@ -9,24 +9,26 @@ const HeroSection = () => {
     <section id="home" className="w-full grid lg:grid-cols-2 min-h-[calc(100vh-56px)]">
       <div className="flex flex-col justify-center items-center text-center lg:text-left p-8 bg-black">
         <div className="max-w-xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter">
-            I'm <span className="text-primary">Juan Felipe Cardona Arango.</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-[#F8F9FA] font-poppins">
+            Bridging Data, Biology, and Intelligence
           </h1>
-          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
-            A Computer Vision Engineer
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-[#7FB069] font-poppins">
+            Data Scientist with a Biomedical and AI Focus
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-6 text-lg text-[#F8F9FA] opacity-80 font-inter">
             I'm exploring how we can make agents see, understand, and transform the world around us. I'm dedicated to building systems that bridge perception and action, shaping a future where technology seamlessly integrates into our lives.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Button size="lg" asChild>
-              <a href="#contact">
-                Let's Build Together
+              <a href="#projects">
+                View Projects
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild>
-                <a href="#projects">View My Work</a>
+            <Button size="lg" variant="default" className='bg-[#0a2342] text-[#F8F9FA] hover:bg-[#0a2342]/90' asChild>
+                <a href="#" download>
+                  Download CV
+                </a>
             </Button>
           </div>
         </div>
@@ -38,7 +40,7 @@ const HeroSection = () => {
           layout="fill"
           objectFit="cover"
           className="opacity-90"
-          data-ai-hint="man presenting"
+          data-ai-hint="A professional photo of Juan Felipe Cardona Arango"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
       </div>

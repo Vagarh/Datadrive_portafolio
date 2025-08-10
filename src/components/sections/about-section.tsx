@@ -1,35 +1,10 @@
-
 "use client";
 
-import Image from 'next/image';
 import { useScrollIntoView } from '@/hooks/use-scroll-into-view';
 import { cn } from '@/lib/utils';
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-
-const aboutImages = [
-    {
-        src: "https://placehold.co/600x400.png",
-        alt: "A man working on a computer with code on the screen.",
-        hint: "programming data"
-    },
-    {
-        src: "https://placehold.co/600x400.png",
-        alt: "A fossil of a dinosaur skeleton.",
-        hint: "dinosaur fossil"
-    },
-    {
-        src: "https://placehold.co/600x400.png",
-        alt: "A colorful exotic bird perched on a branch.",
-        hint: "exotic bird"
-    }
-];
+import { Badge } from "@/components/ui/badge"; // Assuming a Badge component for skills
+import { CodeIcon, BrainCircuitIcon, TelescopeIcon, FlaskConicalIcon } from 'lucide-react'; // Example icons
+// Removed Carousel related imports and aboutImages array
 
 const AboutSection = () => {
   const { ref, inView } = useScrollIntoView();
@@ -46,34 +21,36 @@ const AboutSection = () => {
                 <p>
                 Beyond the world of algorithms, I'm an avid paleontologist and a conservationist for exotic reptiles and birds. This blend of cutting-edge tech and natural history shapes my problem-solving approach: holistic, curious, and driven to make a positive impact.
                 </p>
+                {/* Add more details about your formation and specializations here */}
+                <p>
+                 My expertise includes data analysis, machine learning, computer vision, and automation. I focus on applying these skills to create impactful solutions in health, environmental conservation, and other areas where data can make a real difference.
+                </p>
             </div>
           </div>
-          <div className="order-1 lg:order-2 flex justify-center">
-             <Carousel className="w-full max-w-md">
-                <CarouselContent>
-                    {aboutImages.map((image, index) => (
-                    <CarouselItem key={index}>
-                        <div className="p-1">
-                        <Card>
-                            <CardContent className="flex aspect-video items-center justify-center p-0 overflow-hidden rounded-lg">
-                                <Image
-                                    src={image.src}
-                                    alt={image.alt}
-                                    width={600}
-                                    height={400}
-                                    className="w-full h-full object-cover"
-                                    data-ai-hint={image.hint}
-                                />
-                            </CardContent>
-                        </Card>
-                        </div>
-                    </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden sm:flex" />
-                <CarouselNext className="hidden sm:flex" />
-            </Carousel>
+          {/* Skills & Tools Section - Replaces Carousel */}
+          <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start">
+            <h3 className="text-2xl font-semibold tracking-tight mb-6 text-primary">Skills & Tools</h3>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+              {/* Placeholder for skill badges/icons */}
+              {/* Replace with actual mapping of your skills data */}
+              <Badge variant="secondary">Python</Badge>
+              <Badge variant="secondary">TensorFlow</Badge>
+              <Badge variant="secondary">PyTorch</Badge>
+              <Badge variant="secondary">OpenCV</Badge>
+              <Badge variant="secondary">Scikit-learn</Badge>
+              <Badge variant="secondary">Pandas</Badge>
+              <Badge variant="secondary">NumPy</Badge>
+              <Badge variant="secondary">SQL</Badge>
+              <Badge variant="secondary">GCP</Badge>
+              <Badge variant="secondary">AWS</Badge>
+              <Badge variant="secondary">Azure</Badge>
+              <Badge variant="secondary">Docker</Badge>
+              <Badge variant="secondary">Kubernetes</Badge>
+              <Badge variant="secondary">Git</Badge>
+              <Badge variant="secondary">CI/CD</Badge>
+            </div>
           </div>
+          {/* End Skills & Tools Section */}
         </div>
       </div>
     </section>

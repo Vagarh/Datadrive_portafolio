@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 const ProjectsSection = () => {
   const { ref, inView } = useScrollIntoView();
   return (
-    <section id="projects" className="w-full py-12 md:py-24 lg:py-32 bg-background" ref={ref}>
+    <section id="projects" className="w-full py-12 md:py-24 lg:py-32" ref={ref}>
       <div className={cn("container px-4 md:px-6 transition-all duration-700 ease-in-out", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Featured Projects</h2>
@@ -23,13 +23,13 @@ const ProjectsSection = () => {
         </div>
         <div className="grid gap-8 mt-12 md:grid-cols-2">
           {projects.map((project, index) => (
-            <Card key={project.title} style={{ transitionDelay: `${index * 150}ms` }} className={cn("flex flex-col overflow-hidden transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 bg-secondary", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
+            <Card key={project.title} style={{ transitionDelay: `${index * 100}ms` }} className={cn("flex flex-col overflow-hidden transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
               <Image
                 src={project.image}
                 alt={project.title}
                 width={600}
                 height={350}
-                className="w-full object-cover"
+                className="w-full h-48 object-cover" // Fixed height for images
                 data-ai-hint={project.imageHint}
               />
               <CardHeader>

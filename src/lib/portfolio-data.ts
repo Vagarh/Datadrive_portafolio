@@ -18,18 +18,18 @@ export type Service = {
 
 export const projects: Project[] = [
   {
-    title: 'Pest Detection with Thermography',
-    description: 'Analysis of thermal images for early detection of pests in crops, improving agricultural efficiency.',
+    title: 'Computer Vision System for Bird Recognition with Tetrachromatic Simulation through the Addition of an Estimated UVB Channel in RGB Images',
+    description: 'Adding an estimated ultraviolet channel to RGB bird images enhances chromatic differentiation, improves cluster separation, and uncovers evolutionary and ecological relationships that remain undetected when relying solely on the visible color space.',
     technologies: ['Python', 'TensorFlow', 'OpenCV', 'GCP'],
     link: '#',
-    image: 'https://placehold.co/600x400.png',
-    imageHint: 'agriculture technology'
+    image: '/images/ChatGPT Image 10 ago 2025, 15_47_07.png',
+    imageHint: 'vision-computer'
   },
   {
     title: 'AI Agent for Legal Support',
     description: 'Development of a conversational agent to automate document classification and response to legal inquiries.',
     technologies: ['Python', 'LangChain', 'OpenAI API', 'ETL'],
-    link: '#',
+    link: 'https://github.com/Vagarh/Sistema-de-Visi-n-por-Computadora-para-Reconocimiento-de-Aves-y-Simulaci-n-Tetrocrom-tica',
     image: 'https://placehold.co/600x400.png',
     imageHint: 'AI law'
   },
@@ -45,8 +45,8 @@ export const projects: Project[] = [
     title: 'Business Intelligence Dashboard',
     description: 'Creation of interactive dashboards for visualizing business KPIs, enabling strategic decision-making.',
     technologies: ['Power BI', 'SQL', 'Data Studio'],
-    link: '#',
-    image: 'https://placehold.co/600x400.png',
+    link: 'https://public.tableau.com/app/profile/juan.felipe116/vizzes',
+    image: '/images/Screenshot 2025-08-10 at 3.46.21 PM.png',
     imageHint: 'business dashboard'
   },
 ];
@@ -64,7 +64,7 @@ export const services: Service[] = [
   },
   {
     title: 'Cloud Model Deployment',
-    description: 'Implementation of machine learning models on cloud platforms like GCP, AWS, or Azure for scalability.',
+    description: 'Implementation of machine learning models on cloud platforms like GCP or AWS for scalability.',
     icon: Cloud,
   },
   {

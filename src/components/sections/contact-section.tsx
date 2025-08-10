@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";import { Linkedin, Github, Mail, FileText } from 'lucide-react';
 import { Loader2, Send } from 'lucide-react';
 import type { Project } from '@/lib/portfolio-data';
 import { useScrollIntoView } from '@/hooks/use-scroll-into-view';
@@ -98,7 +98,7 @@ export default function ContactSection() {
             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">Let's talk. Fill out the form or contact me at <a href="mailto:juan.felipe@email.com" className="text-accent hover:underline">juan.felipe@email.com</a></p>
         </div>
         <div className="grid lg:grid-cols-2 gap-12 mt-12">
-            <div>
+            <div className="flex flex-col gap-12">
                 <Card className="bg-secondary">
                     <CardHeader>
                         <CardTitle>Contact Form</CardTitle>
@@ -138,6 +138,28 @@ export default function ContactSection() {
                                 </Button>
                             </form>
                         </Form>
+                    </CardContent>
+                </Card>
+
+                {/* Contact Information */}
+                <Card className="bg-secondary">
+                    <CardHeader>
+                        <CardTitle>Get in Touch</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="flex items-center space-x-3">
+                            <Mail className="h-5 w-5 text-primary" />
+                            <a href="mailto:andreara91es@gmail.com" className="text-foreground hover:underline">juan.felipe@email.com</a>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                            <Linkedin className="h-5 w-5 text-primary" />
+                            <a href="#" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                            <Github className="h-5 w-5 text-primary" />
+                            <a href="#" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+                        </div>
+                         <Button variant="outline" className="mt-4" asChild><a href="#"><FileText className="mr-2 h-4 w-4" /> Download CV</a></Button>
                     </CardContent>
                 </Card>
             </div>
