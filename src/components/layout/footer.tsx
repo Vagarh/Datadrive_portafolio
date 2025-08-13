@@ -1,4 +1,5 @@
 import { Github, Linkedin, Twitter } from 'lucide-react';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
           <span className="font-semibold">Designed by Firebase BY JUAN ARANGO</span>
         </div>
         <div className="flex items-center gap-4">
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</a>
+            <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</Link>
         </div>
         <div className="flex items-center gap-4">
           <a href="https://github.com/Vagarh" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="transition-colors hover:text-primary"><Github className="h-5 w-5" /></a>
