@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Github, Linkedin, Twitter, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -9,6 +10,16 @@ import Link from 'next/link';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const [isHomePage, setIsHomePage] = useState(pathname === '/');
+
+  useEffect(() => {
+    setIsHomePage(pathname === '/');
+  }, [pathname]);
+
+  const getLinkUrl = (href: string) => {
+    return isHomePage ? href : `/${href}`;
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -18,9 +29,9 @@ const Header = () => {
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="transition-colors hover:text-primary">
+            <Link key={link.href} href={getLinkUrl(link.href)} className="transition-colors hover:text-primary">
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="hidden md:flex items-center space-x-3">
@@ -61,9 +72,9 @@ const Header = () => {
                 </div>
                 <nav className="flex flex-col items-start space-y-4 p-4 text-lg">
                   {navLinks.map((link) => (
-                    <a key={link.href} href={link.href} className="transition-colors hover:text-primary" onClick={() => setIsOpen(false)}>
+                    <Link key={link.href} href={getLinkUrl(link.href)} className="transition-colors hover:text-primary" onClick={() => setIsOpen(false)}>
                       {link.label}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
                 <div className="mt-auto p-4 border-t">
