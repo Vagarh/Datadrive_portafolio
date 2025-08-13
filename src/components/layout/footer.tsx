@@ -4,8 +4,9 @@ const Footer = () => {
   return (
     <footer className="w-full py-6 bg-secondary border-t border-border/40">
       <div className="container flex flex-col items-center justify-between gap-4 px-4 text-center md:flex-row md:px-6">
-        <div className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Juan Felipe Cardona Arango. All rights reserved.
+        <div className="text-sm text-muted-foreground space-x-2">
+          <span>© {new Date().getFullYear()} Juan Felipe Cardona Arango. All rights reserved.</span>
+          <span className="font-semibold">Designed by Firebase BY JUAN ARANGO</span>
         </div>
         <div className="flex items-center gap-4">
             <a href="#" className="text-sm text-muted-foreground hover:text-primary">Privacy Policy</a>
