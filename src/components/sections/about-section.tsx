@@ -13,15 +13,12 @@ const AboutSection = () => {
           <div className="order-2 lg:order-1 space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary">About Me</h2>
             <div className="space-y-4 text-lg text-foreground/80">
-                <p>
-                As a Biomedical Engineer with a Master's in Data Science, I thrive at the intersection of technology and discovery. My passion lies in translating complex data into actionable insights, building innovative solutions in AI, Business Intelligence, and data automation.
-                </p>
-                <p>
-                Beyond the world of algorithms, I'm an avid paleontologist and a conservationist for exotic reptiles and birds. This blend of cutting-edge tech and natural history shapes my problem-solving approach: holistic, curious, and driven to make a positive impact.
-                </p>
-                <p>
-                 My expertise includes data analysis, machine learning, computer vision, and automation. I focus on applying these skills to create impactful solutions in health, environmental conservation, and other areas where data can make a real difference.
-                </p>
+            <p>
+              I am a Data Scientist with a background in Biomedical Engineering and a Master's in Data Science. I have experience in Machine Learning, Deep Learning, Natural Language Processing (NLP), and Computer Vision, as well as in implementing Business Intelligence solutions using tools like Python, SQL, Power BI, Tableau, and Looker Studio.
+             </p>
+             <p>
+               My work combines advanced statistical analysis, process automation, and data visualization to transform complex information into practical solutions that support decision-making. I also have experience in the healthcare sector and scientific research projects, which allows me to integrate technical approaches and specialized contexts to solve real-world problems.
+             </p>
             </div>
           </div>
           <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start">
@@ -35,13 +32,16 @@ const AboutSection = () => {
               <Badge variant="secondary">Pandas</Badge>
               <Badge variant="secondary">NumPy</Badge>
               <Badge variant="secondary">SQL</Badge>
+              <Badge variant="secondary">NoSQL</Badge>
               <Badge variant="secondary">GCP</Badge>
               <Badge variant="secondary">AWS</Badge>
-              <Badge variant="secondary">Azure</Badge>
               <Badge variant="secondary">Docker</Badge>
               <Badge variant="secondary">Kubernetes</Badge>
               <Badge variant="secondary">Git</Badge>
               <Badge variant="secondary">CI/CD</Badge>
+              <Badge variant="secondary">n8n</Badge>
+              <Badge variant="secondary">Machine Learning</Badge>
+              <Badge variant="secondary">LLM</Badge>
             </div>
           </div>
         </div>

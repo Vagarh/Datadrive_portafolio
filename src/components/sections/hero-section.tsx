@@ -34,14 +34,11 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="relative hidden lg:block bg-background">
-        <Image
-          src="https://placehold.co/800x1200.png"
-          alt="A photo of Juan Felipe Cardona Arango"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-90"
-          data-ai-hint="A professional photo of Juan Felipe Cardona Arango"
-        />
+        <video className="w-full h-full object-cover opacity-90" autoPlay loop muted playsInline>
+ <source src="/videos/your-video.mp4" type="video/mp4" />
+ {/* Add other video formats for broader browser support if needed */}
+ Your browser does not support the video tag.
+ </video>
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
       </div>
     </section>

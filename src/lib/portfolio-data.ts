@@ -28,7 +28,7 @@ export const projects: Project[] = [
     title: 'Computer Vision System for Bird Recognition with Tetrachromatic Simulation through the Addition of an Estimated UVB Channel in RGB Images',
     description: 'Adding an estimated ultraviolet channel to RGB bird images enhances chromatic differentiation, improves cluster separation, and uncovers evolutionary and ecological relationships that remain undetected when relying solely on the visible color space.',
     technologies: ['Python', 'TensorFlow', 'OpenCV', 'GCP'],
-    link: '#',
+    link: 'https://github.com/Vagarh/Sistema-de-Visi-n-por-Computadora-para-Reconocimiento-de-Aves-y-Simulaci-n-Tetrocrom-tica',
     image: '/images/ChatGPT Image 10 ago 2025, 15_47_07.png',
     imageHint: 'vision-computer'
   },
@@ -92,31 +92,31 @@ export const services: Service[] = [
 ];
 
 export const certifications: Certification[] = [
-    {
-      title: 'Scrum Foundation',
-      issuer: 'CertiProf',
-      badge: 'https://placehold.co/96x96.png',
-      link: '#',
-    },
-    {
-      title: 'Data Analytics',
-      issuer: 'Google',
-      badge: 'https://placehold.co/96x96.png',
-      link: '#',
-    },
-    {
-      title: 'Data-driven Decisions',
-      issuer: 'Platzi',
-      badge: 'https://placehold.co/96x96.png',
-      link: '#',
-    },
-    {
-      title: 'Power BI for Business',
-      issuer: 'Platzi',
-      badge: 'https://placehold.co/96x96.png',
-      link: '#',
-    },
-  ];
+  {
+    title: 'Google Cloud Skills Boost Profile',
+    issuer: 'Google Cloud',
+    badge: '/images/google_skills_logo.jpg',
+    link: 'https://www.cloudskillsboost.google/public_profiles/276ef987-5293-4a35-a408-075eb40c6a05',
+  },
+  {
+    title: 'Platzi Profile',
+    issuer: 'Platzi',
+    badge: '/images/platzi_logo.png',
+    link: 'https://platzi.com/p/juan_felipe116/',
+  },
+  {
+    title: 'Coursera Profile',
+    issuer: 'Coursera',
+    badge: '/images/coursera_logo.png',
+    link: 'https://www.coursera.org/user/5cbabff82249fc7988bf620d7b0c7230',
+  },
+  {
+    title: 'Credly Profile',
+    issuer: 'Credly',
+    badge: '/images/credly.png',
+    link: 'https://www.credly.com/users/juan-felipe-cardona-arango/badges#credly',
+  },
+];
 
 export const navLinks = [
   { href: '#home', label: 'Home' },

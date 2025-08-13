@@ -7,6 +7,7 @@ import * as z from 'zod';
 import Link from 'next/link';
 
 import { recommendProjects } from '@/ai/flows/smart-project-recommendations';
+import { sendContactEmail } from '@/ai/flows/send-contact-email';
 import { projects } from '@/lib/portfolio-data';
 import { useToast } from "@/hooks/use-toast";
 
@@ -34,6 +35,7 @@ const projectDescriptions = projects.map(
 export default function ContactSection() {
   const [recommended, setRecommended] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const { toast } = useToast();
   const { ref, inView } = useScrollIntoView();
 
@@ -76,14 +78,26 @@ export default function ContactSection() {
   }, [messageValue, toast]);
   
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-    toast({
-      title: "Message sent!",
-      description: "Thank you for contacting me. I will get back to you soon.",
-    });
-    form.reset();
-    setRecommended([]);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSending(true);
+    try {
+      await sendContactEmail(values);
+      toast({
+        title: "Message sent!",
+        description: "Thank you for contacting me. I will get back to you soon.",
+      });
+      form.reset();
+      setRecommended([]);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast({
+        title: "Error Sending Message",
+        description: "Something went wrong. Please try again or email me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const recommendedProjectDetails: Project[] = useMemo(() => {
@@ -96,7 +110,7 @@ export default function ContactSection() {
       <div className={cn("container px-4 md:px-6 transition-all duration-700 ease-in-out", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
         <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Have a data or AI challenge?</h2>
-            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">Let's talk. Fill out the form or contact me at <a href="mailto:juan.felipe@email.com" className="text-accent hover:underline">juan.felipe@email.com</a></p>
+            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">Let's talk. Fill out the form or contact me at <a href="mailto:juan.felipe@email.com" className="text-accent hover:underline">juan_felipe116@hotmail.com</a></p>
         </div>
         <div className="grid lg:grid-cols-2 gap-12 mt-12">
             <div className="flex flex-col gap-12">
@@ -134,8 +148,9 @@ export default function ContactSection() {
                                         <FormMessage />
                                     </FormItem>
                                 )} />
-                                <Button type="submit" disabled={form.formState.isSubmitting} className="w-full md:w-auto">
-                                    <Send className="mr-2 h-4 w-4" /> Send Message
+                                <Button type="submit" disabled={isSending} className="w-full md:w-auto">
+                                    {isSending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+                                    {isSending ? "Sending..." : "Send Message"}
                                 </Button>
                             </form>
                         </Form>
@@ -149,7 +164,7 @@ export default function ContactSection() {
                     <CardContent className="space-y-4">
                         <div className="flex items-center space-x-3">
                             <Mail className="h-5 w-5 text-primary" />
-                            <a href="mailto:andreara91es@gmail.com" className="text-foreground hover:underline">juan.felipe@email.com</a>
+                            <a href="mailto:andreara91es@gmail.com" className="text-foreground hover:underline">juan_felipe116@hotmail.com</a>
                         </div>
                         <div className="flex items-center space-x-3">
                             <Linkedin className="h-5 w-5 text-primary" />
