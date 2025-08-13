@@ -17,8 +17,6 @@ const contactFormSchema = z.object({
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // IMPORTANT: Replace this with your own email address.
 const TO_EMAIL = 'your-email@example.com'; 
 
@@ -29,6 +27,12 @@ export const sendContactEmail = ai.defineFlow(
     outputSchema: z.void(),
   },
   async (formData) => {
+    if (!process.env.RESEND_API_KEY) {
+        console.error('RESEND_API_KEY is not set. Please add it to your .env file.');
+        throw new Error('Email service is not configured.');
+    }
+    const resend = new Resend(process.env.RESEND_API_KEY);
+      
     try {
       await resend.emails.send({
         from: 'Portfolio Contact Form <onboarding@resend.dev>',
