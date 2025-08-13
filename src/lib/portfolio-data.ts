@@ -16,6 +16,13 @@ export type Service = {
   icon: LucideIcon;
 };
 
+export type Certification = {
+  title: string;
+  issuer: string;
+  badge: string;
+  link: string;
+};
+
 export const projects: Project[] = [
   {
     title: 'Computer Vision System for Bird Recognition with Tetrachromatic Simulation through the Addition of an Estimated UVB Channel in RGB Images',
@@ -84,10 +91,37 @@ export const services: Service[] = [
   },
 ];
 
+export const certifications: Certification[] = [
+    {
+      title: 'Scrum Foundation',
+      issuer: 'CertiProf',
+      badge: 'https://placehold.co/96x96.png',
+      link: '#',
+    },
+    {
+      title: 'Data Analytics',
+      issuer: 'Google',
+      badge: 'https://placehold.co/96x96.png',
+      link: '#',
+    },
+    {
+      title: 'Data-driven Decisions',
+      issuer: 'Platzi',
+      badge: 'https://placehold.co/96x96.png',
+      link: '#',
+    },
+    {
+      title: 'Power BI for Business',
+      issuer: 'Platzi',
+      badge: 'https://placehold.co/96x96.png',
+      link: '#',
+    },
+  ];
+
 export const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About' },
   { href: '#projects', label: 'Projects' },
-  { href: '#services', label: 'Services' },
+  { href: '#certifications', label: 'Certifications' },
   { href: '#contact', label: 'Contact' },
 ];

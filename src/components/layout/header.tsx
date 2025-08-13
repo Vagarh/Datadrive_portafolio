@@ -30,7 +30,7 @@ const Header = () => {
             <a href="https://www.linkedin.com/in/juan-felipe-c-8a010b121/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-primary"><Linkedin className="h-5 w-5" /></a>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="transition-colors hover:text-primary"><Twitter className="h-5 w-5" /></a>
+            <a href="https://twitter.com/jfcatec" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="transition-colors hover:text-primary"><Twitter className="h-5 w-5" /></a>
           </Button>
           <Button asChild>
             <a href="/cv.pdf" download>
@@ -69,7 +69,7 @@ const Header = () => {
                   <div className="flex justify-center space-x-4 mb-4">
                      <a href="https://github.com/Vagarh" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="transition-colors hover:text-primary"><Github className="h-6 w-6" /></a>
                      <a href="https://www.linkedin.com/in/juan-felipe-c-8a010b121/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-primary"><Linkedin className="h-6 w-6" /></a>
-                     <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="transition-colors hover:text-primary"><Twitter className="h-6 w-6" /></a>
+                     <a href="https://twitter.com/jfcatec" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="transition-colors hover:text-primary"><Twitter className="h-6 w-6" /></a>
                   </div>
                   <Button asChild className="w-full">
                     <a href="/cv.pdf" download>

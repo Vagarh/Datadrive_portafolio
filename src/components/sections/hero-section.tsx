@@ -1,7 +1,6 @@
-
 "use client";
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import Image from 'next/image';
 
 const HeroSection = () => {
@@ -26,7 +25,8 @@ const HeroSection = () => {
               </a>
             </Button>
             <Button size="lg" variant="default" className='bg-[#0a2342] text-[#F8F9FA] hover:bg-[#0a2342]/90' asChild>
-                <a href="#" download>
+                <a href="/cv.pdf" download>
+                  <Download className="mr-2 h-4 w-4" />
                   Download CV
                 </a>
             </Button>

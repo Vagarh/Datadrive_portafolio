@@ -14,7 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";import { Linkedin, Github, Mail, FileText } from 'lucide-react';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Linkedin, Github, Mail, FileText } from 'lucide-react';
 import { Loader2, Send } from 'lucide-react';
 import type { Project } from '@/lib/portfolio-data';
 import { useScrollIntoView } from '@/hooks/use-scroll-into-view';
@@ -91,7 +92,7 @@ export default function ContactSection() {
   }, [recommended]);
 
   return (
-    <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-background" ref={ref}>
+    <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-secondary" ref={ref}>
       <div className={cn("container px-4 md:px-6 transition-all duration-700 ease-in-out", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
         <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Have a data or AI challenge?</h2>
@@ -99,7 +100,7 @@ export default function ContactSection() {
         </div>
         <div className="grid lg:grid-cols-2 gap-12 mt-12">
             <div className="flex flex-col gap-12">
-                <Card className="bg-secondary">
+                <Card className="bg-background">
                     <CardHeader>
                         <CardTitle>Contact Form</CardTitle>
                     </CardHeader>
@@ -141,8 +142,7 @@ export default function ContactSection() {
                     </CardContent>
                 </Card>
 
-                {/* Contact Information */}
-                <Card className="bg-secondary">
+                <Card className="bg-background">
                     <CardHeader>
                         <CardTitle>Get in Touch</CardTitle>
                     </CardHeader>
@@ -153,18 +153,18 @@ export default function ContactSection() {
                         </div>
                         <div className="flex items-center space-x-3">
                             <Linkedin className="h-5 w-5 text-primary" />
-                            <a href="#" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+                            <a href="https://www.linkedin.com/in/juan-felipe-c-8a010b121/" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
                         </div>
                         <div className="flex items-center space-x-3">
                             <Github className="h-5 w-5 text-primary" />
-                            <a href="#" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+                            <a href="https://github.com/Vagarh" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
                         </div>
-                         <Button variant="outline" className="mt-4" asChild><a href="#"><FileText className="mr-2 h-4 w-4" /> Download CV</a></Button>
+                         <Button variant="outline" className="mt-4" asChild><a href="/cv.pdf" download><FileText className="mr-2 h-4 w-4" /> Download CV</a></Button>
                     </CardContent>
                 </Card>
             </div>
             <div className="flex flex-col">
-                <Card className="bg-secondary flex-grow flex flex-col">
+                <Card className="bg-background flex-grow flex flex-col">
                     <CardHeader>
                         <CardTitle className="flex items-center">
                             Recommended Projects for You

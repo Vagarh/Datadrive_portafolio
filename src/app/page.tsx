@@ -4,6 +4,7 @@ import AboutSection from '@/components/sections/about-section';
 import ProjectsSection from '@/components/sections/projects-section';
 import ContactSection from '@/components/sections/contact-section';
 import Footer from '@/components/layout/footer';
+import CertificationsSection from '@/components/sections/certifications-section';
 
 export default function Home() {
   return (
@@ -13,8 +14,9 @@ export default function Home() {
         <HeroSection />
         <div className="bg-[#F8F9FA]">
           <AboutSection />
+          <ProjectsSection />
+          <CertificationsSection />
           <ContactSection />
- <ProjectsSection />
         </div>
       </main>
       <Footer />
