@@ -1,13 +1,12 @@
 "use client";
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import Link from 'next/link';
 
-import { recommendProjects } from '@/ai/flows/smart-project-recommendations';
-import { sendContactEmail } from '@/ai/flows/send-contact-email';
+import { recommendProjects, sendContactEmail } from '@/app/actions';
 import { projects } from '@/lib/portfolio-data';
 import { useToast } from "@/hooks/use-toast";
 
@@ -16,11 +15,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Linkedin, Github, Mail, FileText } from 'lucide-react';
+import { Linkedin, Github, Mail } from 'lucide-react';
 import { Loader2, Send } from 'lucide-react';
 import type { Project } from '@/lib/portfolio-data';
-import { useScrollIntoView } from '@/hooks/use-scroll-into-view';
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
+import { CVDownloadDialog } from '@/components/ui/cv-download-dialog';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -28,18 +28,17 @@ const formSchema = z.object({
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
-const projectDescriptions = projects.map(
-  (p) => `Title: ${p.title}. Description: ${p.description}. Technologies: ${p.technologies.join(', ')}.`
-);
+type FormValues = z.infer<typeof formSchema>;
 
 export default function ContactSection() {
   const [recommended, setRecommended] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const { toast } = useToast();
-  const { ref, inView } = useScrollIntoView();
+  const ref = useRef<HTMLDivElement | null>(null);
+  const inView = useIntersectionObserver(ref);
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: { name: "", email: "", message: "" },
   });
@@ -51,6 +50,10 @@ export default function ContactSection() {
       setRecommended([]);
       return;
     }
+
+    const projectDescriptions = projects.map(
+        (p) => `Title: ${p.title}. Description: ${p.description}. Technologies: ${p.technologies.join(', ')}.`
+    );
 
     const handler = setTimeout(async () => {
       setIsLoading(true);
@@ -78,7 +81,7 @@ export default function ContactSection() {
   }, [messageValue, toast]);
   
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     setIsSending(true);
     try {
       await sendContactEmail(values);
@@ -92,7 +95,7 @@ export default function ContactSection() {
       console.error("Error sending email:", error);
       toast({
         title: "Error Sending Message",
-        description: "Something went wrong. Please try again or email me directly.",
+        description: "Something went wrong. Please try again later.",
         variant: "destructive",
       });
     } finally {
@@ -110,7 +113,7 @@ export default function ContactSection() {
       <div className={cn("container px-4 md:px-6 transition-all duration-700 ease-in-out", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
         <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-primary">Have a data or AI challenge?</h2>
-            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">Let's talk. Fill out the form or contact me at <a href="mailto:juan.felipe@email.com" className="text-accent hover:underline">juan_felipe116@hotmail.com</a></p>
+            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">Let's talk. Fill out the form below to get in touch.</p>
         </div>
         <div className="grid lg:grid-cols-2 gap-12 mt-12">
             <div className="flex flex-col gap-12">
@@ -151,7 +154,7 @@ export default function ContactSection() {
                                 <Button type="submit" disabled={isSending} className="w-full md:w-auto">
                                     {isSending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
                                     {isSending ? "Sending..." : "Send Message"}
-                                </Button>
+                                 </Button>
                             </form>
                         </Form>
                     </CardContent>
@@ -164,7 +167,7 @@ export default function ContactSection() {
                     <CardContent className="space-y-4">
                         <div className="flex items-center space-x-3">
                             <Mail className="h-5 w-5 text-primary" />
-                            <a href="mailto:andreara91es@gmail.com" className="text-foreground hover:underline">juan_felipe116@hotmail.com</a>
+                            <span className="text-foreground">Use the contact form</span>
                         </div>
                         <div className="flex items-center space-x-3">
                             <Linkedin className="h-5 w-5 text-primary" />
@@ -174,7 +177,7 @@ export default function ContactSection() {
                             <Github className="h-5 w-5 text-primary" />
                             <a href="https://github.com/Vagarh" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
                         </div>
-                         <Button variant="outline" className="mt-4" asChild><a href="/cv.pdf" download><FileText className="mr-2 h-4 w-4" /> Download CV</a></Button>
+                         <CVDownloadDialog />
                     </CardContent>
                 </Card>
             </div>

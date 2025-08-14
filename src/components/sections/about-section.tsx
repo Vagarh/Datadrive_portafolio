@@ -1,11 +1,38 @@
 "use client";
 
-import { useScrollIntoView } from '@/hooks/use-scroll-into-view';
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
 import { Badge } from "@/components/ui/badge";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
+const skills = [
+    { name: "Python" },
+    { name: "TensorFlow" },
+    { name: "PyTorch" },
+    { name: "OpenCV" },
+    { name: "Scikit-learn" },
+    { name: "Pandas" },
+    { name: "NumPy" },
+    { name: "SQL" },
+    { name: "NoSQL" },
+    { name: "GCP" },
+    { name: "AWS" },
+    { name: "Docker" },
+    { name: "Kubernetes" },
+    { name: "Git" },
+    { name: "CI/CD" },
+    { name: "n8n" },
+    { name: "Machine Learning" },
+    { name: "LLM" },
+  ];
 
 const AboutSection = () => {
-  const { ref, inView } = useScrollIntoView();
+  const { ref, inView } = useIntersectionObserver();
   return (
     <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-secondary" ref={ref}>
       <div className={cn("container px-4 md:px-6 transition-all duration-700 ease-in-out", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
@@ -21,28 +48,30 @@ const AboutSection = () => {
              </p>
             </div>
           </div>
-          <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start">
+          <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start w-full">
             <h3 className="text-2xl font-semibold tracking-tight mb-6 text-primary">Skills & Tools</h3>
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3">
-              <Badge variant="secondary">Python</Badge>
-              <Badge variant="secondary">TensorFlow</Badge>
-              <Badge variant="secondary">PyTorch</Badge>
-              <Badge variant="secondary">OpenCV</Badge>
-              <Badge variant="secondary">Scikit-learn</Badge>
-              <Badge variant="secondary">Pandas</Badge>
-              <Badge variant="secondary">NumPy</Badge>
-              <Badge variant="secondary">SQL</Badge>
-              <Badge variant="secondary">NoSQL</Badge>
-              <Badge variant="secondary">GCP</Badge>
-              <Badge variant="secondary">AWS</Badge>
-              <Badge variant="secondary">Docker</Badge>
-              <Badge variant="secondary">Kubernetes</Badge>
-              <Badge variant="secondary">Git</Badge>
-              <Badge variant="secondary">CI/CD</Badge>
-              <Badge variant="secondary">n8n</Badge>
-              <Badge variant="secondary">Machine Learning</Badge>
-              <Badge variant="secondary">LLM</Badge>
-            </div>
+            <Carousel
+                className="w-full max-w-xs"
+                plugins={[
+                  Autoplay({
+                    delay: 2000,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                  }),
+                ]}
+                opts={{
+                  loop: true,
+                  align: "start",
+                }}
+            >
+              <CarouselContent>
+                {skills.map((skill, index) => (
+                  <CarouselItem key={index} className="basis-1/3">
+                    <Badge variant="secondary">{skill.name}</Badge>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </div>
