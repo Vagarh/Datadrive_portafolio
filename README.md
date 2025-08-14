@@ -1,80 +1,107 @@
-# DataDive Portfolio
+# Modern Portfolio with AI-Powered Features
 
-This is the repository for the DataDive Portfolio, a personal portfolio website for Juan Felipe, a Data Scientist with expertise in Biomedical Engineering and AI.
+This is a comprehensive portfolio web application built with Next.js for the frontend and a Node.js/Express backend. It's designed to showcase projects, skills, and certifications, while also incorporating AI-powered features to enhance user interaction.
 
-## Core Features:
+## Key Features
 
-- **Persistent Navigation**: A fixed header with navigation links to key sections, social media, and a downloadable CV.
-- **Hero Section**: An introductory section highlighting Juan Felipe's expertise in data science, biomedical engineering, and AI.
-- **About Me**: A section showcasing Juan Felipe's background, blending technical skills with personal interests.
-- **Projects Showcase**: A collection of project cards displaying successful projects with descriptions, technologies used, and links to demos or repositories.
-- **Services Offered**: A list of services with icons and descriptions, covering data science, BI, and AI agent development.
-- **Contact Form**: A functional contact form for inquiries and service requests.
-- **Smart Project Recommendations**: An AI-powered tool that suggests relevant projects to visitors based on their inquiries in the contact form.
+*   **Responsive and Modern UI**: A sleek and mobile-friendly design built with Next.js, TypeScript, and Tailwind CSS.
+*   **Dynamic Sections**: Includes sections for:
+    *   **Hero**: A captivating introduction.
+    *   **About**: A detailed description of your background and skills.
+    *   **Services**: Services you offer.
+    *   **Projects**: A showcase of your work, with smart recommendations.
+    *   **Certifications**: A list of your certifications and credentials.
+    *   **Contact**: A functional contact form for user inquiries.
+*   **AI-Powered Enhancements**:
+    *   **Smart Project Recommendations**: An AI flow that suggests projects based on user interests.
+    *   **Automated Contact Emails**: An AI flow that processes and sends contact form submissions.
+*   **CV Download**: Allows users to download a PDF version of your CV, with an email registration feature to track downloads.
+*   **Backend Service**: A robust backend built with Node.js and Express to handle API requests.
+*   **Dockerized Backend**: The backend is containerized with Docker for easy deployment and scalability.
 
-## Style Guidelines:
+## Tech Stack
 
-- **Background**: Dark tones (#1F1F23) for a modern and sophisticated look.
-- **Primary Color**: Cobalt blue (#3A7CA5) to convey trustworthiness.
-- **Accent Color**: Lime green (#A3D9A5) for interactive elements and calls to action.
-- **Font**: 'Inter' (sans-serif) for a modern and readable experience.
-- **Cards**: Subtle shadows and rounded borders (8px) for project and service sections.
-- **Animations**: Subtle scroll animations to reveal content sections and micro-interactions on buttons.
-- **Icons**: Minimalist icons to accompany services and links, ensuring clarity and visual appeal.
+### Frontend
 
-## Getting Started
+*   **Next.js**: React framework for server-side rendering and static site generation.
+*   **React**: JavaScript library for building user interfaces.
+*   **TypeScript**: Typed superset of JavaScript for enhanced code quality.
+*   **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+*   **Genkit**: AI framework for building and managing AI flows.
+*   **Shadcn UI**: Reusable and accessible UI components.
 
-To get a local copy up and running, follow these simple steps.
+### Backend
 
-### Prerequisites
-
-- Node.js (v18 or later)
-- npm
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Create a `.env.local` file in the root of the project and add the following environment variables:
-    ```
-    RESEND_API_KEY=your_resend_api_key
-    TO_EMAIL=your_email_address
-    ```
-
-### Running the Application
-
-```sh
-npm run dev
-```
-
-This will start the development server on `http://localhost:3000`.
+*   **Node.js**: JavaScript runtime environment.
+*   **Express**: Web framework for Node.js.
+*   **TypeScript**: For type-safe backend development.
+*   **Firebase Firestore**: NoSQL database for logging CV downloads.
+*   **Docker**: For containerizing the backend service.
 
 ## Project Structure
 
-The project is organized as follows:
+The repository is organized into the following main directories:
 
-- `src/app/`: Contains the main pages of the application.
-- `src/components/`: Contains the reusable React components.
-- `src/lib/`: Contains utility functions and data.
-- `src/styles/`: Contains global styles and Tailwind CSS configuration.
-- `public/`: Contains static assets like images and fonts.
-- `backend/`: Contains the backend server code.
+*   **`src/`**: Contains the frontend source code, including pages, components, hooks, and AI flows.
+*   **`public/`**: Static assets like images, videos, and logos.
+*   **`backend/`**: The backend service, including its own `package.json` and Dockerfile.
+*   **`docs/`**: Project documentation, including the technical blueprint and development context.
 
-## Technologies Used
+For more detailed information, refer to the `README.md` files within each directory.
 
-- [Next.js](https://nextjs.org/) - React Framework
-- [Tailwind CSS](https://tailwindcss.com/) - CSS Framework
-- [Resend](https://resend.com/) - Email API
-- [Embla Carousel](https://www.embla-carousel.com/) - Carousel Component
-- [Genkit](https://firebase.google.com/docs/genkit) - AI Framework
-- [Firebase](https://firebase.google.com/) - Backend Platform
+## Getting Started
 
----
+### Prerequisites
 
-This README was generated with the help of an AI assistant.
+*   Node.js (version 20 or higher)
+*   npm or yarn
+*   Docker (for running the backend in a container)
+
+### Installation and Running the Application
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/your-portfolio.git
+    cd your-portfolio
+    ```
+
+2.  **Install frontend dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Install backend dependencies:**
+    ```bash
+    cd backend
+    npm install
+    cd ..
+    ```
+
+4.  **Run the frontend development server:**
+    ```bash
+    npm run dev
+    ```
+    The frontend will be available at `http://localhost:3000`.
+
+5.  **Run the backend server:**
+    *   **Without Docker:**
+        ```bash
+        cd backend
+        npm run build
+        npm start
+        ```
+    *   **With Docker:**
+        ```bash
+        cd backend
+        docker build -t portfolio-backend .
+        docker run -p 8080:8080 portfolio-backend
+        ```
+    The backend will be available at `http://localhost:8080`.
+
+## Deployment
+
+The application is configured for deployment on modern hosting platforms. Refer to the `apphosting.yaml` file for Google Cloud App Hosting configurations.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.

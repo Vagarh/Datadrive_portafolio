@@ -21,12 +21,10 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroSection />
-        <div className="bg-[#F8F9FA]">
-          <AboutSection ref={aboutRef} />
-          <ProjectsSection ref={projectsRef} />
-          <CertificationsSection ref={certificationsRef} />
-          <ContactSection ref={contactRef} />
-        </div>
+        <AboutSection ref={aboutRef} />
+        <ProjectsSection ref={projectsRef} />
+        <CertificationsSection ref={certificationsRef} />
+        <ContactSection ref={contactRef} />
       </main>
       <Footer />
     </div>
