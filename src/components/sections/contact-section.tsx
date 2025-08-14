@@ -1,12 +1,14 @@
+
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect, useRef, forwardRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import Link from 'next/link';
 
-import { recommendProjects, sendContactEmail } from '@/app/actions';
+import { sendContactEmail } from '@/ai/flows/send-contact-email';
+import { recommendProjects } from '@/ai/flows/smart-project-recommendations';
 import { projects } from '@/lib/portfolio-data';
 import { useToast } from "@/hooks/use-toast";
 
@@ -30,13 +32,13 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function ContactSection() {
+
+const ContactSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
   const [recommended, setRecommended] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const { toast } = useToast();
-  const ref = useRef<HTMLDivElement | null>(null);
-  const inView = useIntersectionObserver(ref);
+  const inView = useIntersectionObserver(ref as React.RefObject<Element>);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -217,4 +219,7 @@ export default function ContactSection() {
       </div>
     </section>
   );
-}
+});
+ContactSection.displayName = "ContactSection";
+
+export default ContactSection;

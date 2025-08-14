@@ -1,5 +1,6 @@
+
 "use client";
-import { useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,11 +11,11 @@ import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
-    const ref = useRef<HTMLDivElement | null>(null);
-    const inView = useIntersectionObserver(ref);
+    const cardRef = useRef<HTMLDivElement | null>(null);
+    const inView = useIntersectionObserver(cardRef);
 
     return (
-        <div ref={ref}>
+        <div ref={cardRef}>
             <Card
                 className={cn(
                     "flex flex-col overflow-hidden transition-all duration-700 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20 bg-background",
@@ -54,9 +55,8 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
     );
 };
 
-const ProjectsSection = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const inView = useIntersectionObserver(ref);
+const ProjectsSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
+  const inView = useIntersectionObserver(ref as React.RefObject<Element>);
 
   return (
     <section id="projects" className="w-full py-12 md:py-24 lg:py-32 bg-secondary" ref={ref}>
@@ -75,6 +75,7 @@ const ProjectsSection = () => {
       </div>
     </section>
   );
-};
+});
+ProjectsSection.displayName = "ProjectsSection";
 
 export default ProjectsSection;

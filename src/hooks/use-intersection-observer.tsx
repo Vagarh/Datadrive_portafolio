@@ -1,14 +1,19 @@
+
 "use client";
 
 import { useState, useEffect, RefObject } from 'react';
 
 export const useIntersectionObserver = (
-  ref: RefObject<Element>,
+  ref: RefObject<Element> | React.ForwardedRef<HTMLDivElement>,
   options: IntersectionObserverInit = {}
 ) => {
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
+    if (typeof ref === 'function' || !ref?.current) {
+        return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -21,13 +26,14 @@ export const useIntersectionObserver = (
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [ref, options]);

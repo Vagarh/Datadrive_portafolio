@@ -1,5 +1,6 @@
+
 "use client";
-import { useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { certifications, Certification } from '@/lib/portfolio-data';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
@@ -7,12 +8,12 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 const CertificationCard = ({ certification, index }: { certification: Certification; index: number }) => {
-    const ref = useRef<HTMLAnchorElement | null>(null);
-    const inView = useIntersectionObserver(ref);
+    const cardRef = useRef<HTMLAnchorElement | null>(null);
+    const inView = useIntersectionObserver(cardRef);
 
     return (
         <a 
-            ref={ref}
+            ref={cardRef}
             href={certification.link} 
             target="_blank" 
             rel="noopener noreferrer" 
@@ -41,9 +42,8 @@ const CertificationCard = ({ certification, index }: { certification: Certificat
     );
 };
 
-const CertificationsSection = () => {
-    const ref = useRef<HTMLDivElement | null>(null);
-    const inView = useIntersectionObserver(ref);
+const CertificationsSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
+    const inView = useIntersectionObserver(ref as React.RefObject<Element>);
 
     return (
         <section id="certifications" className="w-full py-12 md:py-24 lg:py-32 bg-background" ref={ref}>
@@ -62,6 +62,7 @@ const CertificationsSection = () => {
             </div>
         </section>
     );
-};
+});
+CertificationsSection.displayName = "CertificationsSection";
 
 export default CertificationsSection;
