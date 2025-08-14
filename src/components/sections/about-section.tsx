@@ -4,12 +4,6 @@
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
 import { Badge } from "@/components/ui/badge";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import { forwardRef } from 'react';
 
 const skills = [
@@ -33,6 +27,15 @@ const skills = [
     { name: "LLM" },
   ];
 
+const badgeColors = [
+  "hsl(var(--chart-1))",
+  "hsl(var(--chart-2))",
+  "hsl(var(--chart-3))",
+  "hsl(var(--chart-4))",
+  "hsl(var(--chart-5))",
+  "hsl(var(--primary))",
+];
+
 const AboutSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
     const inView = useIntersectionObserver(ref as React.RefObject<Element>);
     return (
@@ -52,28 +55,23 @@ const AboutSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElem
             </div>
             <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start w-full">
                 <h3 className="text-2xl font-semibold tracking-tight mb-6 text-primary">Skills & Tools</h3>
-                <Carousel
-                    className="w-full max-w-xs"
-                    plugins={[
-                    Autoplay({
-                        delay: 2000,
-                        stopOnInteraction: false,
-                        stopOnMouseEnter: true,
-                    }),
-                    ]}
-                    opts={{
-                    loop: true,
-                    align: "start",
-                    }}
-                >
-                <CarouselContent>
-                    {skills.map((skill, index) => (
-                    <CarouselItem key={index} className="basis-1/3">
-                        <Badge variant="secondary">{skill.name}</Badge>
-                    </CarouselItem>
-                    ))}
-                </CarouselContent>
-                </Carousel>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill, index) => (
+                    <Badge
+                      key={index}
+                      className={cn(
+                        "text-lg px-4 py-2 transform transition-all duration-500 ease-out text-white",
+                        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                      )}
+                      style={{
+                        backgroundColor: badgeColors[index % badgeColors.length],
+                        transitionDelay: `${index * 50}ms`,
+                      }}
+                    >
+                      {skill.name}
+                    </Badge>
+                  ))}
+                </div>
             </div>
             </div>
         </div>
