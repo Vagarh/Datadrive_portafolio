@@ -1,8 +1,18 @@
+
+"use client";
+
+import { useState, useEffect } from 'react';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function PrivacyPolicyPage() {
+  const [lastUpdated, setLastUpdated] = useState('');
+
+  useEffect(() => {
+    setLastUpdated(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+  }, []);
+
   return (
     <div className="flex min-h-dvh flex-col bg-background">
       <Header />
@@ -13,7 +23,7 @@ export default function PrivacyPolicyPage() {
               <CardTitle className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary">Privacy Policy</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6 text-lg text-foreground/80">
-              <p>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              <p>Last updated: {lastUpdated}</p>
               
               <section>
                 <h2 className="text-2xl font-semibold mb-2 text-primary">1. Introduction</h2>
