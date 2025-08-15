@@ -2,7 +2,9 @@ import type { LucideIcon } from 'lucide-react';
 import { Computer, BarChart3, Cloud, Workflow, Users, Bot } from 'lucide-react';
 
 export type Project = {
+  id: number;
   title: string;
+  category: string;
   description: string;
   technologies: string[];
   link: string;
@@ -23,9 +25,11 @@ export type Certification = {
   link: string;
 };
 
-export const projects: Project[] = [
+const projects: Project[] = [
   {
-    title: 'Computer Vision System for Bird Recognition with Tetrachromatic Simulation through the Addition of an Estimated UVB Channel in RGB Images',
+    id: 1,
+    title: 'Computer Vision System for Bird Recognition',
+    category: 'Deep Learning',
     description: 'Adding an estimated ultraviolet channel to RGB bird images enhances chromatic differentiation, improves cluster separation, and uncovers evolutionary and ecological relationships that remain undetected when relying solely on the visible color space.',
     technologies: ['Python', 'TensorFlow', 'OpenCV', 'GCP'],
     link: 'https://github.com/Vagarh/Sistema-de-Visi-n-por-Computadora-para-Reconocimiento-de-Aves-y-Simulaci-n-Tetrocrom-tica',
@@ -33,7 +37,9 @@ export const projects: Project[] = [
     imageHint: 'vision-computer'
   },
   {
+    id: 2,
     title: 'AI Agent for Legal Support',
+    category: 'AI Agents',
     description: 'Development of a conversational agent to automate document classification and response to legal inquiries.',
     technologies: ['Python', 'LangChain', 'OpenAI API', 'ETL'],
     link: 'https://github.com/Vagarh/Sistema-de-Visi-n-por-Computadora-para-Reconocimiento-de-Aves-y-Simulaci-n-Tetrocrom-tica',
@@ -41,7 +47,9 @@ export const projects: Project[] = [
     imageHint: 'AI law'
   },
   {
+    id: 3,
     title: 'ETL Pipeline in Google Drive',
+    category: 'Data Engineering',
     description: 'Automation of data extraction, transformation, and loading from multiple sources in Google Drive to a data warehouse.',
     technologies: ['Airflow', 'Python', 'Google Cloud', 'BigQuery'],
     link: '#',
@@ -49,7 +57,9 @@ export const projects: Project[] = [
     imageHint: 'data pipeline'
   },
   {
+    id: 4,
     title: 'Business Intelligence Dashboard',
+    category: 'Business Intelligence',
     description: 'Creation of interactive dashboards for visualizing business KPIs, enabling strategic decision-making.',
     technologies: ['Power BI', 'SQL', 'Data Studio'],
     link: 'https://public.tableau.com/app/profile/juan.felipe116/vizzes',
@@ -58,7 +68,7 @@ export const projects: Project[] = [
   },
 ];
 
-export const services: Service[] = [
+const services: Service[] = [
   {
     title: 'Computer Vision Consulting',
     description: 'Analysis and development of custom solutions for image and video processing and analysis.',
@@ -91,7 +101,7 @@ export const services: Service[] = [
   },
 ];
 
-export const certifications: Certification[] = [
+const certifications: Certification[] = [
   {
     title: 'Google Cloud Skills Boost Profile',
     issuer: 'Google Cloud',
@@ -118,10 +128,39 @@ export const certifications: Certification[] = [
   },
 ];
 
-export const navLinks = [
+const navLinks = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About' },
   { href: '#projects', label: 'Projects' },
   { href: '#certifications', label: 'Certifications' },
   { href: '#contact', label: 'Contact' },
 ];
+
+const skills = [
+    { name: "Python" },
+    { name: "TensorFlow" },
+    { name: "PyTorch" },
+    { name: "OpenCV" },
+    { name: "Scikit-learn" },
+    { name: "Pandas" },
+    { name: "NumPy" },
+    { name: "SQL" },
+    { name: "NoSQL" },
+    { name: "GCP" },
+    { name: "AWS" },
+    { name: "Docker" },
+    { name: "Kubernetes" },
+    { name: "Git" },
+    { name: "CI/CD" },
+    { name: "n8n" },
+    { name: "Machine Learning" },
+    { name: "LLM" },
+  ];
+
+export const portfolioData = {
+  projects,
+  services,
+  certifications,
+  navLinks,
+  skills,
+};

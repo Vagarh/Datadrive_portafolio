@@ -2,12 +2,13 @@
 "use client";
 
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { services } from '@/lib/portfolio-data';
-import { useScrollIntoView } from '@/hooks/use-scroll-into-view';
+import { portfolioData } from '@/lib/portfolio-data';
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
+import { forwardRef } from "react";
 
-const ServicesSection = () => {
-  const { ref, inView } = useScrollIntoView();
+const ServicesSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
+  const inView = useIntersectionObserver(ref as React.RefObject<Element>);
   return (
     <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-secondary" ref={ref}>
       <div className={cn("container px-4 md:px-6 transition-all duration-700 ease-in-out", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
@@ -18,7 +19,7 @@ const ServicesSection = () => {
           </p>
         </div>
         <div className="grid gap-6 mt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
+          {portfolioData.services.map((service, index) => (
             <Card key={service.title} style={{ transitionDelay: `${index * 150}ms` }} className={cn("text-center p-4 transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10", inView ? "opacity-100" : "opacity-0 translate-y-4")}>
               <CardHeader className="items-center">
                 <div className="p-4 rounded-full bg-primary/10 text-primary mb-4">
@@ -33,6 +34,8 @@ const ServicesSection = () => {
       </div>
     </section>
   );
-};
+});
+
+ServicesSection.displayName = "ServicesSection";
 
 export default ServicesSection;

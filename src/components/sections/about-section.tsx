@@ -4,28 +4,8 @@
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
 import { Badge } from "@/components/ui/badge";
+import { portfolioData } from '@/lib/portfolio-data';
 import { forwardRef } from 'react';
-
-const skills = [
-    { name: "Python" },
-    { name: "TensorFlow" },
-    { name: "PyTorch" },
-    { name: "OpenCV" },
-    { name: "Scikit-learn" },
-    { name: "Pandas" },
-    { name: "NumPy" },
-    { name: "SQL" },
-    { name: "NoSQL" },
-    { name: "GCP" },
-    { name: "AWS" },
-    { name: "Docker" },
-    { name: "Kubernetes" },
-    { name: "Git" },
-    { name: "CI/CD" },
-    { name: "n8n" },
-    { name: "Machine Learning" },
-    { name: "LLM" },
-  ];
 
 const badgeColors = [
   "hsl(var(--chart-1))",
@@ -56,7 +36,7 @@ const AboutSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElem
             <div className="order-1 lg:order-2 flex flex-col items-center lg:items-start w-full">
                 <h3 className="text-2xl font-semibold tracking-tight mb-6 text-primary">Skills & Tools</h3>
                 <div className="flex flex-wrap gap-2">
-                  {skills.map((skill, index) => (
+                  {portfolioData.skills.map((skill, index) => (
                     <Badge
                       key={index}
                       className={cn(

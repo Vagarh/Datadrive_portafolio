@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, Github, Linkedin, Twitter, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { navLinks } from '@/lib/portfolio-data';
+import { portfolioData } from '@/lib/portfolio-data';
 import Link from 'next/link';
 
 const Header = () => {
@@ -28,7 +28,7 @@ const Header = () => {
           JFCA
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-          {navLinks.map((link) => (
+          {portfolioData.navLinks.map((link) => (
             <Link key={link.href} href={getLinkUrl(link.href)} className="transition-colors hover:text-primary">
               {link.label}
             </Link>
@@ -71,7 +71,7 @@ const Header = () => {
                   </Button>
                 </div>
                 <nav className="flex flex-col items-start space-y-4 p-4 text-lg">
-                  {navLinks.map((link) => (
+                  {portfolioData.navLinks.map((link) => (
                     <Link key={link.href} href={getLinkUrl(link.href)} className="transition-colors hover:text-primary" onClick={() => setIsOpen(false)}>
                       {link.label}
                     </Link>

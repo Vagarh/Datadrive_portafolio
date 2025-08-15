@@ -3,7 +3,7 @@
 
 import { forwardRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { certifications } from '@/lib/portfolio-data';
+import { portfolioData } from '@/lib/portfolio-data';
 import Image from 'next/image';
 
 const CertificationsSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
@@ -13,7 +13,7 @@ const CertificationsSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HT
         setIsMounted(true);
     }, []);
 
-    const duplicatedCerts = isMounted ? [...certifications, ...certifications] : [];
+    const duplicatedCerts = isMounted ? [...portfolioData.certifications, ...portfolioData.certifications] : [];
 
     return (
         <section id="certifications" className="w-full py-16 md:py-24 bg-secondary" ref={ref}>

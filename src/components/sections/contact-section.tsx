@@ -1,15 +1,11 @@
 
 "use client";
 
-import { useState, useMemo, useEffect, useRef, forwardRef } from 'react';
+import { useState, forwardRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import Link from 'next/link';
-
-import { sendContactEmail } from '@/ai/flows/send-contact-email';
-import { recommendProjects } from '@/ai/flows/smart-project-recommendations';
-import { projects } from '@/lib/portfolio-data';
 import { useToast } from "@/hooks/use-toast";
 
 import { Button } from "@/components/ui/button";
@@ -19,7 +15,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Linkedin, Github, Mail } from 'lucide-react';
 import { Loader2, Send } from 'lucide-react';
-import type { Project } from '@/lib/portfolio-data';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { cn } from '@/lib/utils';
 import { CVDownloadDialog } from '@/components/ui/cv-download-dialog';
@@ -32,10 +27,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-
 const ContactSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>((props, ref) => {
-  const [recommended, setRecommended] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const { toast } = useToast();
   const inView = useIntersectionObserver(ref as React.RefObject<Element>);
@@ -45,58 +37,60 @@ const ContactSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
     defaultValues: { name: "", email: "", message: "" },
   });
 
-  const messageValue = form.watch("message");
-
-  useEffect(() => {
-    if (!messageValue || messageValue.length < 20) {
-      setRecommended([]);
-      return;
-    }
-
-    const projectDescriptions = projects.map(
-        (p) => `Title: ${p.title}. Description: ${p.description}. Technologies: ${p.technologies.join(', ')}.`
-    );
-
-    const handler = setTimeout(async () => {
-      setIsLoading(true);
-      try {
-        const result = await recommendProjects({
-          userQuery: messageValue,
-          projectDescriptions: projectDescriptions,
-        });
-        setRecommended(result.recommendedProjects || []);
-      } catch (error) {
-        console.error("Error fetching recommendations:", error);
-        toast({
-            title: "AI Error",
-            description: "Could not get recommendations. Please try again.",
-            variant: "destructive",
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    }, 700);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [messageValue, toast]);
-  
-
   const onSubmit = async (values: FormValues) => {
     setIsSending(true);
     try {
-      await sendContactEmail(values);
+      // Enviar el formulario de contacto
+      const contactResponse = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+
+      if (!contactResponse.ok) {
+        throw new Error('Failed to send message.');
+      }
+
       toast({
         title: "Message sent!",
         description: "Thank you for contacting me. I will get back to you soon.",
       });
       form.reset();
-      setRecommended([]);
+
+      // Obtener recomendaciones de proyectos
+      const recommendResponse = await fetch('/api/recommend', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: values.message }),
+      });
+
+      if (recommendResponse.ok) {
+        const { recommendedProjects, aiReasoning } = await recommendResponse.json();
+        if (recommendedProjects && recommendedProjects.length > 0) {
+          toast({
+            title: "Recommended Projects For You",
+            description: (
+              <div>
+                <p className="mb-2">{aiReasoning}</p>
+                <ul className="space-y-2">
+                  {recommendedProjects.map((p: any) => (
+                    <li key={p.id}>
+                      <Link href={`#projects`} className="font-semibold text-primary hover:underline">
+                        {p.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          });
+        }
+      }
+
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error in contact form submission:", error);
       toast({
-        title: "Error Sending Message",
+        title: "Error",
         description: "Something went wrong. Please try again later.",
         variant: "destructive",
       });
@@ -104,11 +98,6 @@ const ContactSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
       setIsSending(false);
     }
   };
-
-  const recommendedProjectDetails: Project[] = useMemo(() => {
-    if (recommended.length === 0) return [];
-    return projects.filter(p => recommended.some(rec => rec.includes(p.title)));
-  }, [recommended]);
 
   return (
     <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-secondary" ref={ref}>
@@ -187,31 +176,13 @@ const ContactSection = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
                 <Card className="bg-background flex-grow flex flex-col">
                     <CardHeader>
                         <CardTitle className="flex items-center">
-                            Recommended Projects for You
-                            {isLoading && <Loader2 className="ml-2 h-5 w-5 animate-spin text-primary" />}
+                            AI-Powered Recommendations
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="flex-grow flex flex-col">
-                        { !isLoading && recommendedProjectDetails.length > 0 ? (
-                            <div className="space-y-4">
-                                {recommendedProjectDetails.map((p) => (
-                                    <Link key={p.title} href={p.link || '#'} passHref>
-                                        <div className="p-4 border rounded-lg hover:bg-background/50 cursor-pointer transition-colors">
-                                            <h4 className="font-semibold text-primary">{p.title}</h4>
-                                            <p className="text-sm text-muted-foreground mt-1">{p.description.substring(0,100)}...</p>
-                                        </div>
-                                    </Link>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="flex-grow flex items-center justify-center text-center text-muted-foreground py-8">
-                                <p>
-                                    {isLoading 
-                                        ? "Analyzing your query..." 
-                                        : "Type in the message and the AI will suggest relevant projects from my portfolio."}
-                                </p>
-                            </div>
-                        )}
+                    <CardContent className="flex-grow flex items-center justify-center text-center text-muted-foreground py-8">
+                        <p>
+                            After you send a message, our AI will analyze your query and suggest the most relevant projects from my portfolio in a notification.
+                        </p>
                     </CardContent>
                 </Card>
             </div>

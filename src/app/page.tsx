@@ -9,11 +9,13 @@ import ProjectsSection from '@/components/sections/projects-section';
 import ContactSection from '@/components/sections/contact-section';
 import Footer from '@/components/layout/footer';
 import CertificationsSection from '@/components/sections/certifications-section';
+import ServicesSection from '@/components/sections/services-section';
 
 export default function Home() {
   const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const certificationsRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -24,6 +26,7 @@ export default function Home() {
         <AboutSection ref={aboutRef} />
         <ProjectsSection ref={projectsRef} />
         <CertificationsSection ref={certificationsRef} />
+        <ServicesSection ref={servicesRef} />
         <ContactSection ref={contactRef} />
       </main>
       <Footer />
