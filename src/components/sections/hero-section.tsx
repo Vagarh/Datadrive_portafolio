@@ -47,7 +47,7 @@ const HeroSection = () => {
       </div>
       <div className="relative bg-background">
         <Image
-            src="/images/ChatGPT Image 10 ago 2025, 15_47_07.png"
+            src="/images/unnamed.png"
             alt="Digital Brain"
             width={1080}
             height={1920}
